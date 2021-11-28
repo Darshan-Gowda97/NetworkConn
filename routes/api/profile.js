@@ -34,8 +34,10 @@ router.post(
   '/',
   [
     auth,
-    [check('status', 'status is required').not().isEmpty()],
-    check('skills', 'skills is required').not().isEmpty(),
+    [
+      check('status', 'status is required').not().isEmpty(),
+      check('skills', 'skills is required').not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -301,7 +303,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', async (req, res) => {
   try {
     const options = {
-      uri: `https://api.githib.com/users/${
+      uri: `https://api.github.com/users/${
         req.params.username
       }/repos?per_page=5&sort=created:asc&client_id=${config.get(
         'myGithubClientId'
@@ -312,10 +314,8 @@ router.get('/github/:username', async (req, res) => {
     request(options, (error, response, body) => {
       if (error) console.error(error);
 
-      console.log(response, body);
-
       if (response.statusCode !== 200) {
-        res.status(404).json({ msg: 'No Github Profile found' });
+        return res.status(404).json({ msg: 'No Github Profile found' });
       }
       res.json(JSON.parse(body));
     });
