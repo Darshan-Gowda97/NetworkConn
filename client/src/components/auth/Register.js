@@ -4,8 +4,13 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import CustomButton from '../partials/CustomButton';
 import CustomInput from '../partials/CustomInput';
 import ErrorMsg from '../partials/ErrorMsg';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alerts';
+import propTypes from 'prop-types';
 
-export const Register = () => {
+export const Register = ({ setAlert }) => {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [showEmailError, setShowEmailError] = useState(false);
@@ -52,32 +57,16 @@ export const Register = () => {
   const submitClicked = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.log('Password are not matchin');
+      setAlert('Password are not matchin', 'danger');
     } else {
       console.log('SUCCESS');
-      // const newUser = {
-      //   name,
-      //   email,
-      //   password,
-      // };
-      // console.log(newUser);
-
-      // try {
-      //   const config = {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   };
-
-      //   const body = JSON.stringify(newUser);
-
-      //   const res = await axios.post('/api/users', body, config);
-
-      //   console.log(res.data);
-      // } catch (err) {
-      //   console.log(err.response.data);
-      // }
     }
+  };
+
+  const toLogin = () => {
+    history.push({
+      pathname: '/login',
+    });
   };
 
   return (
@@ -144,19 +133,24 @@ export const Register = () => {
               type="submit"
             />
           </div>
-          <div className="pt-3 flex ">
-            <h1 className="font-thin">Already have an account? </h1>
-            <CustomButton
-              color="primary"
-              bgcolor="white"
-              name="Sign-in"
-              padding="0"
-            />
-          </div>
         </div>
       </form>
+      <div className="pt-3 flex ">
+        <h1 className="font-thin">Already have an account? </h1>
+        <CustomButton
+          color="primary"
+          bgcolor="white"
+          name="Sign-in"
+          padding="0"
+          onClick={() => toLogin()}
+        />
+      </div>
     </div>
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: propTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);
