@@ -4,9 +4,13 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import CustomButton from '../partials/CustomButton';
 import CustomInput from '../partials/CustomInput';
 import ErrorMsg from '../partials/ErrorMsg';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+//Redux
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-export const Login = () => {
+export const Login = ({ login, isAuthenticated }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [showEmailError, setShowEmailError] = useState(false);
@@ -36,7 +40,7 @@ export const Login = () => {
 
   const submitClicked = async (e) => {
     e.preventDefault();
-    console.log('Success');
+    login({ email, password });
   };
 
   const toSignup = () => {
@@ -44,6 +48,11 @@ export const Login = () => {
       pathname: '/register',
     });
   };
+
+  //Redirect if Logged In
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="flex  flex-col lg:px-32 px-10 lg:pt-7 pt-5">
@@ -110,4 +119,13 @@ export const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

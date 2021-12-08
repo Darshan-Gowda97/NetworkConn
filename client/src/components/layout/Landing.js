@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavItem from '../partials/NavItem';
 import _ from 'lodash';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -7,6 +7,10 @@ import { FaCode } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
+import Alert from './Alert';
+import setAuthToken from '../../utils/setAuthToken';
+import { loadUser } from '../../actions/auth';
+import store from '../../state/store';
 
 const NavData = {
   Developers: '/developers',
@@ -14,11 +18,20 @@ const NavData = {
   Login: '/login',
 };
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 export const Landing = () => {
   const [showMenu, setShowMenu] = React.useState(false);
 
   //let SideNav = window.location.pathname === '/' ? false : true;
   let SideNav = true;
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -48,6 +61,7 @@ export const Landing = () => {
             </div>
           </div>
         ) : null}
+        <Alert />
 
         <Switch>
           <Route exact path="/" component={Homepage} />

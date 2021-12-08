@@ -14,6 +14,7 @@ module.exports = {
       primary: '#17a2b8', //'#3F51B5' //788cde //7e89c9 //91a7ff
       onPrimary: 'rgba(52, 58, 64, 0.9)', //'#343a40' //212121 //191a1b
       error: '#dc3545', //fe837d  shadeColor(colors.RED_9, -8)
+      danger: '#DC3545',
       success: '#28a745',
       white: '#FFFFFF',
       download: '#8BB3F7',

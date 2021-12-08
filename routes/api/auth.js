@@ -8,7 +8,7 @@ const config = require('config');
 const bcrypt = require('bcryptjs');
 
 //@route   GET api/auth
-//@desc    auth verify route
+//@desc    auth verify route and runs every time when user landed
 //@access  Public
 router.get('/', auth, async (req, res) => {
   try {
@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 //@route   POST api/auth
-//@desc    Authenticte User and Get token
+//@desc    Authenticte User and Get token known as  basically Login
 //@access  Public
 router.post(
   '/',

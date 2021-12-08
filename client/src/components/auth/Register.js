@@ -4,12 +4,14 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import CustomButton from '../partials/CustomButton';
 import CustomInput from '../partials/CustomInput';
 import ErrorMsg from '../partials/ErrorMsg';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+//Redux
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alerts';
+import { register } from '../../actions/auth';
 import propTypes from 'prop-types';
 
-export const Register = ({ setAlert }) => {
+export const Register = ({ setAlert, register, isAuthenticated }) => {
   const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -57,9 +59,9 @@ export const Register = ({ setAlert }) => {
   const submitClicked = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setAlert('Password are not matchin', 'danger');
+      setAlert('Passwords are not matching', 'danger');
     } else {
-      console.log('SUCCESS');
+      register({ name, email, password });
     }
   };
 
@@ -68,6 +70,11 @@ export const Register = ({ setAlert }) => {
       pathname: '/login',
     });
   };
+
+  //Redirect if Registered
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="flex  flex-col lg:px-32 px-10 lg:pt-7 pt-5">
@@ -87,7 +94,7 @@ export const Register = ({ setAlert }) => {
           <CustomInput
             type="text"
             placeholder="Name*"
-            required="required"
+            //required="required"
             value={name}
             onChange={(e) => onnameChange(e.target.value)}
           ></CustomInput>
@@ -95,7 +102,7 @@ export const Register = ({ setAlert }) => {
             <CustomInput
               type="email"
               placeholder="EMAIL ADDRESS*"
-              required="required"
+              //required="required"
               value={email}
               onChange={(e) => onEmailChange(e.target.value)}
               onBlur={(e) => emailBlur(e.target.value)}
@@ -110,18 +117,20 @@ export const Register = ({ setAlert }) => {
             <CustomInput
               type="password"
               placeholder="PASSWORD*"
-              required="required"
+              //required="required"
               value={password}
               onChange={(e) => onPasswordChange(e.target.value)}
+              // min='6'
             ></CustomInput>
           </div>
           <div className="pt-5">
             <CustomInput
               type="password"
               placeholder="CONFIRM PASSWORD*"
-              required="required"
+              // required="required"
               value={confirmPassword}
               onChange={(e) => onConfirmPassChange(e.target.value)}
+              min="6"
             ></CustomInput>
           </div>
           <div className="pt-5">
@@ -151,6 +160,12 @@ export const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: propTypes.func.isRequired,
+  register: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool,
 };
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
