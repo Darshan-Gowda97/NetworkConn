@@ -3,7 +3,9 @@ import NavItem from '../partials/NavItem';
 import _ from 'lodash';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Homepage from './Homepage';
+import Dashboard from '../dashboard/Dashboard';
 import { FaCode } from 'react-icons/fa';
+import { BiLogOut } from 'react-icons/bi';
 import { IconContext } from 'react-icons/lib';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
@@ -11,6 +13,11 @@ import Alert from './Alert';
 import setAuthToken from '../../utils/setAuthToken';
 import { loadUser } from '../../actions/auth';
 import store from '../../state/store';
+//Redux
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { logout } from '../../actions/auth';
+import PrivateRoute from '../routing/PrivateRoute';
 
 const NavData = {
   Developers: '/developers',
@@ -18,11 +25,15 @@ const NavData = {
   Login: '/login',
 };
 
+const NavData1 = {
+  Logout: '/',
+};
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-export const Landing = () => {
+const Landing = ({ loading, isAuthenticated, logout }) => {
   const [showMenu, setShowMenu] = React.useState(false);
 
   //let SideNav = window.location.pathname === '/' ? false : true;
@@ -48,16 +59,33 @@ export const Landing = () => {
             </div>
 
             <div class="flex  lg:justify-end justify-center items-center  border-b-2 border-primary text-onSurface h-16">
-              <ul class="flex gap-5 lg:pr-12">
-                {_.keys(NavData).map((key) => (
-                  <NavItem
-                    key={key}
-                    name={key}
-                    to={NavData[key]}
-                    onClick={() => setShowMenu(!showMenu)}
-                  />
+              {!loading &&
+                (isAuthenticated ? (
+                  <div className="flex justify-center items-center gap-1">
+                    <BiLogOut size={18} />
+                    <ul class="flex gap-5 lg:pr-12">
+                      {_.keys(NavData1).map((key) => (
+                        <NavItem
+                          key={key}
+                          name={key}
+                          to={NavData1[key]}
+                          onClick={logout}
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <ul class="flex gap-5 lg:pr-12">
+                    {_.keys(NavData).map((key) => (
+                      <NavItem
+                        key={key}
+                        name={key}
+                        to={NavData[key]}
+                        onClick={() => setShowMenu(!showMenu)}
+                      />
+                    ))}
+                  </ul>
                 ))}
-              </ul>
             </div>
           </div>
         ) : null}
@@ -67,10 +95,25 @@ export const Landing = () => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </BrowserRouter>
     </>
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  logout: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool.isRequired,
+  loading: propTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    loading: state.auth.loading,
+  };
+  //auth: state.auth,
+};
+
+export default connect(mapStateToProps, { logout })(Landing);

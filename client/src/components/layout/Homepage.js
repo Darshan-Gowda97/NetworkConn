@@ -66,12 +66,19 @@ const Homepage = () => {
           <div className="flex justify-center items-center gap-5 pt-3 text-lg ">
             <div className="flex w-24 h-10 bg-primary justify-center items-center rounded hover:opacity-75">
               <div className="text-white">
-                <button className="w-full h-full">Signup</button>
+                <button onClick={toSignup} className="w-full h-full">
+                  Signup
+                </button>
               </div>
             </div>
             <div className="flex w-24 h-10 bg-white justify-center items-center rounded hover:opacity-75">
               <div className="">
-                <button className="w-full h-full font-semibold ">Login</button>
+                <button
+                  onClick={toLogin}
+                  className="w-full h-full font-semibold "
+                >
+                  Login
+                </button>
               </div>
             </div>
           </div>

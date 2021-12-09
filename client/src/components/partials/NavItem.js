@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { BiLogOut } from 'react-icons/bi';
 
 const NavItem = (props) => {
   return (

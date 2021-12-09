@@ -93,7 +93,7 @@ export const Login = ({ login, isAuthenticated }) => {
               onChange={(e) => onPasswordChange(e.target.value)}
             ></CustomInput>
           </div>
-
+          {console.log(isAuthenticated)}
           <div className="pt-5">
             <CustomButton
               color="white"
