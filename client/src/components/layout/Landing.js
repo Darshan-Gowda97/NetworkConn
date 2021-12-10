@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import NavItem from '../partials/NavItem';
 import _ from 'lodash';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Homepage from './Homepage';
 import Dashboard from '../dashboard/Dashboard';
-import { FaCode } from 'react-icons/fa';
-import { BiLogOut } from 'react-icons/bi';
-import { IconContext } from 'react-icons/lib';
+import CreateProfile from '../profile-forms/CreateProfile';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import Alert from './Alert';
@@ -26,7 +24,12 @@ const NavData = {
 };
 
 const NavData1 = {
+  Dashboard: '/dashboard',
   Logout: '/',
+};
+
+const NavData2 = {
+  DevConnector: '/',
 };
 
 if (localStorage.token) {
@@ -49,20 +52,17 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
         {SideNav ? (
           <div class=" h-full w-full flex grid lg:grid-cols-2 grid-cols-1 bg-onPrimary">
             <div class="flex lg:flex-row flex-row lg:justify-start justify-center items-center lg:px-32 gap-1 lg:pt-0 pt-2 lg:border-b-2 border-primary text-onSurface lg:h-16">
-              <IconContext.Provider value={{ color: 'white', size: '32px' }}>
-                <div class="pt-1">
-                  <FaCode />
-                </div>
-              </IconContext.Provider>
-
-              <h1 class="text-2xl font-semibold text-white">DevConnector</h1>
+              <ul class="text-2xl font-semibold text-white">
+                {_.keys(NavData2).map((key) => (
+                  <NavItem key={key} name={key} to={NavData2[key]} size="2xl" />
+                ))}
+              </ul>
             </div>
 
             <div class="flex  lg:justify-end justify-center items-center  border-b-2 border-primary text-onSurface h-16">
               {!loading &&
                 (isAuthenticated ? (
                   <div className="flex justify-center items-center gap-1">
-                    <BiLogOut size={18} />
                     <ul class="flex gap-5 lg:pr-12">
                       {_.keys(NavData1).map((key) => (
                         <NavItem
@@ -70,6 +70,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
                           name={key}
                           to={NavData1[key]}
                           onClick={logout}
+                          size="lg"
                         />
                       ))}
                     </ul>
@@ -82,6 +83,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
                         name={key}
                         to={NavData[key]}
                         onClick={() => setShowMenu(!showMenu)}
+                        size="lg"
                       />
                     ))}
                   </ul>
@@ -96,6 +98,11 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute
+            exact
+            path="/create-profile"
+            component={CreateProfile}
+          />
         </Switch>
       </BrowserRouter>
     </>
