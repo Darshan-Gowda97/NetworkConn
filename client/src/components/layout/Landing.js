@@ -50,7 +50,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
     <>
       <BrowserRouter>
         {SideNav ? (
-          <div class=" h-full w-full flex grid lg:grid-cols-2 grid-cols-1 bg-onPrimary">
+          <div class="h-full w-full flex grid lg:grid-cols-2 grid-cols-1 bg-onPrimary">
             <div class="flex lg:flex-row flex-row lg:justify-start justify-center items-center lg:px-32 gap-1 lg:pt-0 pt-2 lg:border-b-2 border-primary text-onSurface lg:h-16">
               <ul class="text-2xl font-semibold text-white">
                 {_.keys(NavData2).map((key) => (

@@ -6,6 +6,7 @@ import { ImSpinner9 } from 'react-icons/im';
 import { BsFillPersonFill } from 'react-icons/bs';
 import CustomButton from '../partials/CustomButton';
 import { useHistory } from 'react-router-dom';
+import DashboardAction from './DashboardAction';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -38,7 +39,7 @@ const Dashboard = ({
         </h1>
       </div>
       {profile !== null ? (
-        <div>has </div>
+        <DashboardAction />
       ) : (
         <div>
           <div className="pt-4 text-lg">
