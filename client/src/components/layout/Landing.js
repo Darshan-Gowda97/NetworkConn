@@ -16,6 +16,9 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import PrivateRoute from '../routing/PrivateRoute';
+import EditProfile from '../profile-forms/EditProfile';
+import AddExperience from '../profile-forms/AddExperience';
+import AddEducation from '../profile-forms/AddEducation';
 
 const NavData = {
   Developers: '/developers',
@@ -103,6 +106,13 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
             path="/create-profile"
             component={CreateProfile}
           />
+          <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+          <PrivateRoute
+            exact
+            path="/add-experience"
+            component={AddExperience}
+          />
+          <PrivateRoute exact path="/add-education" component={AddEducation} />
         </Switch>
       </BrowserRouter>
     </>
