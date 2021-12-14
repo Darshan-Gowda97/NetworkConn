@@ -5,6 +5,7 @@ import CustomButton from '../partials/CustomButton';
 import CustomInput from '../partials/CustomInput';
 import ErrorMsg from '../partials/ErrorMsg';
 import { useHistory, Redirect } from 'react-router-dom';
+import { IconContext } from 'react-icons/lib';
 //Redux
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -55,65 +56,71 @@ export const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="flex  flex-col lg:px-32 px-10 lg:pt-7 pt-5">
-      <h1 className=" lg:text-5xl text-4xl font-semibold text-primary">
-        Sign In
-      </h1>
-      <div className="lg:flex hidden pt-6">
-        <BsFillPersonFill size={32} />
-        <h1 className=" lg:text-2xl text-lg text-black">
-          Sign Into Your Account
+    <div className="fixed w-full h-full py-14 bg-background ">
+      <div className="flex h-auto flex-col lg:w-1/2 lg:mx-auto mx-8 my-4 bg-surface lg:px-10 px-6 lg:pt-7 pt-5">
+        <h1 className=" lg:text-5xl text-4xl font-semibold text-onSurface">
+          Sign In
         </h1>
-      </div>
-      <div className="flex lg:hidden items-center pt-4">
-        <BsFillPersonFill size={20} />
-        <h1 className=" lg:text-2xl text-lg text-black">
-          Sign Into Your Account
-        </h1>
-      </div>
-      <form onSubmit={(e) => submitClicked(e)}>
-        <div className="pt-5 ">
-          <div className="pt-5">
-            <CustomInput
-              type="email"
-              placeholder="EMAIL ADDRESS*"
-              required="required"
-              value={email}
-              onChange={(e) => onEmailChange(e.target.value)}
-              onBlur={(e) => emailBlur(e.target.value)}
-            ></CustomInput>
-            {showEmailError ? <ErrorMsg Text="Enter valid Email Id" /> : null}
-          </div>
-          <div className="pt-5">
-            <CustomInput
-              type="password"
-              placeholder="PASSWORD*"
-              required="required"
-              value={password}
-              onChange={(e) => onPasswordChange(e.target.value)}
-            ></CustomInput>
-          </div>
-          {console.log(isAuthenticated)}
-          <div className="pt-5">
-            <CustomButton
-              color="white"
-              name="Login"
-              bgcolor="primary"
-              padding="2"
-              type="submit"
-            />
-          </div>
+        <div className="lg:flex items-center hidden pt-6">
+          <IconContext.Provider value={{ color: '#D2D3D6', size: '25' }}>
+            <BsFillPersonFill />
+          </IconContext.Provider>
+          <h1 className=" lg:text-2xl text-lg text-onSurface">
+            Sign Into Your Account
+          </h1>
         </div>
-      </form>
-      <div className="pt-3 flex ">
-        <h1 className="font-thin">Dont have an account? </h1>
-        <CustomButton
-          color="primary"
-          bgcolor="white"
-          name="Sign-up"
-          padding="0"
-          onClick={() => toSignup()}
-        />
+        <div className="flex lg:hidden items-center pt-4">
+          <IconContext.Provider value={{ color: '#D2D3D6', size: '20' }}>
+            <BsFillPersonFill />
+          </IconContext.Provider>
+          <h1 className=" lg:text-2xl text-lg text-onSurface">
+            Sign Into Your Account
+          </h1>
+        </div>
+        <form onSubmit={(e) => submitClicked(e)}>
+          <div className="pt-5 ">
+            <div className="">
+              <CustomInput
+                type="email"
+                placeholder="EMAIL ADDRESS*"
+                required="required"
+                value={email}
+                onChange={(e) => onEmailChange(e.target.value)}
+                onBlur={(e) => emailBlur(e.target.value)}
+              ></CustomInput>
+              {/* {showEmailError ? <ErrorMsg Text="Enter valid Email Id" /> : null} */}
+            </div>
+            <div className="pt-5">
+              <CustomInput
+                type="password"
+                placeholder="PASSWORD*"
+                required="required"
+                value={password}
+                onChange={(e) => onPasswordChange(e.target.value)}
+              ></CustomInput>
+            </div>
+            {console.log(isAuthenticated)}
+            <div className="pt-5">
+              <CustomButton
+                color="white"
+                name="Login"
+                bgcolor="primary"
+                padding="2"
+                type="submit"
+              />
+            </div>
+          </div>
+        </form>
+        <div className="pt-3 flex pb-4 ">
+          <h1 className="font-thin text-onSurface">Dont have an account? </h1>
+          <CustomButton
+            color="primary"
+            bgcolor="surface"
+            name="Sign-up"
+            padding="0"
+            onClick={() => toSignup()}
+          />
+        </div>
       </div>
     </div>
   );

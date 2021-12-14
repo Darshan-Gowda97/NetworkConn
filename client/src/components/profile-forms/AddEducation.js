@@ -101,7 +101,7 @@ const AddEducation = ({ addEducation, history }) => {
                 toggleDisabled(!toDateDisabled);
               }}
             ></input>
-            <h1>Current Job</h1>
+            <h1>Current Education</h1>
           </div>
           {!toDateDisabled && (
             <div className="pt-5">

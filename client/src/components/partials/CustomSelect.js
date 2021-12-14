@@ -7,13 +7,13 @@ const CustomSelect = (props) => {
       onChange={props.onChange}
       className={
         'px-2 py-2 rounded placeholder-surface text-sm border border-onSurface outline-none focus:outline-none focus:ring-1 focus:ring-surface focus:border-transparent w-full ' +
-        (props.selected ? 'text-surface' : 'text-surface') +
+        (props.selected ? 'text-onSurface' : 'text-onSurface') +
         ' bg-' +
         props.color
       }
     >
       <option
-        className="text-surface placeholder-surface"
+        className="text-onBackground placeholder-surface"
         disabled
         selected
         value=""
