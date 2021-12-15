@@ -12,7 +12,7 @@ const DashboardAction = () => {
 
   return (
     <div className="mt-5">
-      <div className="flex gap-4">
+      <div className="flex lg:flex-row flex-col justify-center items-center mx-auto gap-4">
         <Link to={'/edit-profile'}>
           <CustomButton
             color="black"

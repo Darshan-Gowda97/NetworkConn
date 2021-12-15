@@ -97,8 +97,8 @@ const CreateProfile = ({ createProfile, history }) => {
           <IconContext.Provider value={{ color: '#D2D3D6', size: '20' }}>
             <BsFillPersonFill />
           </IconContext.Provider>
-          <h1 className=" lg:text-2xl text-lg text-onSurface">
-            Lets get some information to make your profile stand out
+          <h1 className=" lg:text-2xl text-base text-onSurface">
+            Lets get some information about your profile
           </h1>
         </div>
         <form onSubmit={(e) => submitClicked(e)}>

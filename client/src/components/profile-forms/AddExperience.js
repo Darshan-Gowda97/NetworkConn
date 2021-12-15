@@ -7,6 +7,7 @@ import { FaBlackTie } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
+import MonthBtn from '../partials/MonthBtn';
 
 const AddExperience = ({ addExperience, history }) => {
   const [formData, setFormData] = useState({
@@ -46,13 +47,12 @@ const AddExperience = ({ addExperience, history }) => {
             past
           </h1>
         </div>
-        <div className="flex lg:hidden gap-1 pt-4">
-          <IconContext.Provider value={{ color: '#D2D3D6', size: '28' }}>
+        <div className="flex lg:hidden items-center gap-1 pt-4">
+          <IconContext.Provider value={{ color: '#D2D3D6', size: '20' }}>
             <FaBlackTie size={20} />
           </IconContext.Provider>
           <h1 className=" lg:text-2xl text-base text-onSurface">
-            Add any developer/programming positions that you have had in the
-            past
+            Add any developer/programming experience
           </h1>
         </div>
         <form className="w-3/4" onSubmit={(e) => submitClicked(e)}>
@@ -87,19 +87,23 @@ const AddExperience = ({ addExperience, history }) => {
             </div>
             <div className="pt-5">
               <h1 className="pb-1 pl-1 text-onSurface">From Date</h1>
-              <CustomInput
-                type="date"
-                placeholder="dd-mm-yyyy"
-                name="from"
+              <MonthBtn
                 value={from}
+                name="from"
+                id="from"
+                placeholder="dd-mm-yyyy"
+                required="required"
                 onChange={(e) => onChange(e)}
-              ></CustomInput>
+                onFocus={(e) => (e.target.type = 'date')}
+                onBlur={(e) => (e.target.type = 'text')}
+                type="text"
+              ></MonthBtn>
             </div>
             <div className="flex items-center gap-2 pt-5">
               <input
                 type="checkbox"
                 placeholder="Current Job"
-                className="ml-2"
+                className="ml-2 placeholder-onBackground"
                 checked={current}
                 name="current"
                 value={current}
@@ -113,13 +117,17 @@ const AddExperience = ({ addExperience, history }) => {
             {!toDateDisabled && (
               <div className="pt-5">
                 <h1 className="pb-1 pl-1 text-onSurface">To Date</h1>
-                <CustomInput
-                  type="date"
-                  placeholder="dd-mm-yyyy"
-                  name="to"
+                <MonthBtn
                   value={to}
+                  name="to"
+                  id="to"
+                  placeholder="dd-mm-yyyy"
+                  required="required"
                   onChange={(e) => onChange(e)}
-                ></CustomInput>
+                  onFocus={(e) => (e.target.type = 'date')}
+                  onBlur={(e) => (e.target.type = 'text')}
+                  type="text"
+                ></MonthBtn>
               </div>
             )}
             <div className="pt-5">

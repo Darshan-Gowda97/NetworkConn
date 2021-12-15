@@ -19,14 +19,16 @@ import PrivateRoute from '../routing/PrivateRoute';
 import EditProfile from '../profile-forms/EditProfile';
 import AddExperience from '../profile-forms/AddExperience';
 import AddEducation from '../profile-forms/AddEducation';
+import Profiles from '../profiles/Profiles';
 
 const NavData = {
-  Developers: '/developers',
+  Developers: '/profiles',
   Register: '/register',
   Login: '/login',
 };
 
 const NavData1 = {
+  Developers: '/profiles',
   Dashboard: '/dashboard',
   Logout: '/',
 };
@@ -100,6 +102,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profiles" component={Profiles} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute
             exact

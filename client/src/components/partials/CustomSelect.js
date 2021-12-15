@@ -6,8 +6,8 @@ const CustomSelect = (props) => {
       name={props.name}
       onChange={props.onChange}
       className={
-        'px-2 py-2 rounded placeholder-surface text-sm border border-onSurface outline-none focus:outline-none focus:ring-1 focus:ring-surface focus:border-transparent w-full ' +
-        (props.selected ? 'text-onSurface' : 'text-onSurface') +
+        'px-2 py-2 rounded placeholder-onBackground text-sm border border-onSurface outline-none focus:outline-none focus:ring-1 focus:ring-surface focus:border-transparent w-full ' +
+        (props.selected ? 'text-onSurface' : 'text-onBackground') +
         ' bg-' +
         props.color
       }

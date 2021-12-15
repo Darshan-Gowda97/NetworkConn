@@ -116,12 +116,12 @@ const EditProfile = ({
             Lets get some information to make your profile stand out
           </h1>
         </div>
-        <div className="flex lg:hidden items-center pt-4">
+        <div className="flex lg:hidden justify-center items-center pt-4">
           <IconContext.Provider value={{ color: '#D2D3D6', size: '20' }}>
             <BsFillPersonFill size={20} />
           </IconContext.Provider>
-          <h1 className=" lg:text-2xl text-lg text-onSurface">
-            Lets get some information to make your profile stand out
+          <h1 className=" lg:text-2xl text-base text-onSurface">
+            Lets get some information about your profile
           </h1>
         </div>
         <form onSubmit={(e) => submitClicked(e)}>

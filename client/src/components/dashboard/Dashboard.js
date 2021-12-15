@@ -34,8 +34,8 @@ const Dashboard = ({
       <ImSpinner9 size="40" className="text-primary animate-spin" />
     </div>
   ) : (
-    <div className="flex w-full h-screen bg-background ">
-      <div className="flex flex-col lg:w-3/4 lg:px-32 px-10 lg:pt-7 pt-5 bg-surface lg:mx-auto mx-4 my-8 items-center">
+    <div className="flex w-full h-auto min-h-screen bg-background ">
+      <div className="flex flex-col lg:w-3/4 w-full lg:px-32 px-10 lg:pt-7 pt-5 bg-surface lg:mx-auto mx-4 my-8 items-center">
         <h1 className="lg:text-5xl text-4xl font-semibold text-onSurface">
           Dashboard
         </h1>
