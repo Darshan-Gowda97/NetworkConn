@@ -14,14 +14,14 @@ const Education = ({ education, deleteEducation }) => {
           <h1 className="lg:text-2xl text-xl font-semibold text-onSurface">
             Education Credentials
           </h1>
-          <div className="  my-5 grid grid-cols-4 gap-4">
+          <div className="  my-5 grid lg:grid-cols-4 grid-cols-2 gap-4">
             <div className="bg-onSurface flex justify-center items-center h-10 text-black px-8">
               School
             </div>
-            <div className="bg-onSurface flex justify-center items-center h-10 text-black px-8">
+            <div className="bg-onSurface lg:flex hidden justify-center items-center h-10 text-black px-8">
               Degree
             </div>
-            <div className="bg-onSurface flex justify-center items-center h-10 text-black px-14">
+            <div className="bg-onSurface lg:flex hidden justify-center items-center h-10 text-black px-14">
               Years
             </div>
             <div className="bg-onSurface flex justify-center items-center h-10 text-black px-14">
@@ -31,14 +31,17 @@ const Education = ({ education, deleteEducation }) => {
         </div>
       )}
       {_.map(education, (edu) => (
-        <div key={edu._id} className="  my-5 grid grid-cols-4 gap-4">
+        <div
+          key={edu._id}
+          className="  my-5 grid lg:grid-cols-4 grid-cols-2 gap-4"
+        >
           <div className="flex pt-2 justify-center items-center text-onSurface">
             {edu.school}
           </div>
-          <div className="flex justify-center items-center text-onSurface">
+          <div className="lg:flex hidden justify-center items-center text-onSurface">
             {edu.degree}
           </div>
-          <div className="flex justify-center items-center text-onSurface">
+          <div className="lg:flex hidden justify-center items-center text-onSurface">
             <Moment format="YYYY/MM/DD">{edu.from}</Moment> -{' '}
             {edu.to === null ? (
               ' Now'

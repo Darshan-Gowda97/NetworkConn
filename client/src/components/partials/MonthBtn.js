@@ -1,5 +1,4 @@
 const MonthBtn = (props) => {
-  const moment = require('moment');
   return (
     <input
       id={props.id}

@@ -17,7 +17,7 @@ const Homepage = () => {
   return (
     <div className="flex ">
       <div className="fixed lg:w-auto lg:h-auto w-full h-full flex">
-        <img src={showcase} />
+        <img src={showcase} alt="Background" />
       </div>
       <div className="fixed flex w-full h-full bg-overlay justify-center items-center">
         <div className="lg:flex hidden flex-col gap-4 justify-center items-center">

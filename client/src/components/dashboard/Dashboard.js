@@ -22,7 +22,7 @@ const Dashboard = ({
   let icon = <TiUserDelete />;
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   const toCreateProfile = () => {
     history.push({

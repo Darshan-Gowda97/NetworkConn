@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
 import CustomButton from '../partials/CustomButton';
 import CustomInput from '../partials/CustomInput';
-import ErrorMsg from '../partials/ErrorMsg';
 import { useHistory, Redirect } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 //Redux
@@ -14,16 +13,9 @@ import { login } from '../../actions/auth';
 export const Login = ({ login, isAuthenticated }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
-  const [showEmailError, setShowEmailError] = useState(false);
   const [password, setPassword] = useState('');
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
   const onEmailChange = (val) => {
-    setShowEmailError(false);
     setEmail(val);
   };
 
@@ -35,7 +27,6 @@ export const Login = ({ login, isAuthenticated }) => {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(val)) {
-      setShowEmailError(true);
     }
   };
 

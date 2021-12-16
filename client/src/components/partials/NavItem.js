@@ -10,7 +10,7 @@ const NavItem = (props) => {
     icon = <BsFillPersonFill size={18} />;
   } else if (props.name === 'Logout') {
     icon = <BiLogOut size={18} />;
-  } else if (props.name == 'DevConnector') {
+  } else if (props.name === 'DevConnector') {
     icon = (
       <IconContext.Provider value={{ color: 'white', size: '32px' }}>
         <FaCode />
@@ -24,7 +24,7 @@ const NavItem = (props) => {
       <NavLink
         exact
         activeClassName=" block text-primary text-lg hover:text-primary "
-        onClick={props.onClick}
+        onClick={props.name === 'Developers' ? () => {} : props.onClick}
         className={
           'block flex justify-center items-center gap-1  hover:text-primary text-' +
           props.size

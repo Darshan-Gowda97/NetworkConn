@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import NavItem from '../partials/NavItem';
 import _ from 'lodash';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Homepage from './Homepage';
 import Dashboard from '../dashboard/Dashboard';
 import CreateProfile from '../profile-forms/CreateProfile';
@@ -20,6 +20,7 @@ import EditProfile from '../profile-forms/EditProfile';
 import AddExperience from '../profile-forms/AddExperience';
 import AddEducation from '../profile-forms/AddEducation';
 import Profiles from '../profiles/Profiles';
+import Profile from '../profile/Profile';
 
 const NavData = {
   Developers: '/profiles',
@@ -103,6 +104,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profiles" component={Profiles} />
+          <Route exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute
             exact
