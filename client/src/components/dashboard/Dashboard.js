@@ -21,6 +21,7 @@ const Dashboard = ({
   const history = useHistory();
   let icon = <TiUserDelete />;
   useEffect(() => {
+    console.log('Hiii');
     getCurrentProfile();
   }, [getCurrentProfile]);
 
