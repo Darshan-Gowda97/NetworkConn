@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CustomButton from '../partials/CustomButton';
 import { BiCheck } from 'react-icons/bi';

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ImSpinner9 } from 'react-icons/im';
 import { getProfiles } from '../../actions/profile';
 import { IconContext } from 'react-icons/lib';
-import { GiNestedHexagons } from 'react-icons/gi';
+import { BsGlobe } from 'react-icons/bs';
 import ProfileItem from './ProfileItem';
 import _ from 'lodash';
 
@@ -24,7 +24,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         </h1>
         <div className="lg:flex hidden gap-1 pt-6">
           <IconContext.Provider value={{ color: '#D2D3D6', size: '25' }}>
-            <GiNestedHexagons size={32} />
+            <BsGlobe size={32} />
           </IconContext.Provider>
           <h1 className=" lg:text-2xl text-lg text-onSurface">
             Browse and connect with developers
@@ -32,7 +32,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         </div>
         <div className="flex lg:hidden items-center gap-1 pt-4">
           <IconContext.Provider value={{ color: '#D2D3D6', size: '25' }}>
-            <GiNestedHexagons size={20} />
+            <BsGlobe size={20} />
           </IconContext.Provider>
           <h1 className=" lg:text-2xl text-base text-onSurface">
             Browse and connect with developers

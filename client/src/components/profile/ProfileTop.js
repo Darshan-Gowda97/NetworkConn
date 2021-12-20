@@ -62,12 +62,12 @@ const ProfileTop = ({
           )}
           {social && social.linkedin && (
             <IconContext.Provider value={{ color: '#D2D3D6', size: '30' }}>
-              <BsInstagram />
+              <AiFillLinkedin />
             </IconContext.Provider>
           )}
           {social && social.instagram && (
             <IconContext.Provider value={{ color: '#D2D3D6', size: '30' }}>
-              <AiOutlineTwitter />
+              <BsInstagram />
             </IconContext.Provider>
           )}
         </div>

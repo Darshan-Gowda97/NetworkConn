@@ -7,11 +7,14 @@ import { Link } from 'react-router-dom';
 import CustomButton from '../partials/CustomButton';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
+import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
+import _ from 'lodash';
+import ProfileGithub from './ProfileGithub';
 
 const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    console.log('Hiiii');
     getProfileById(match.params.id);
     setLoading(false);
   }, [match.params.id]);
@@ -44,12 +47,69 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
             </Link>
           )}
       </div>
-      <div className="flex flex-col lg:w-3/4 lg:mx-auto mx-4 mt-8 items-center  lg:px-12 px-2 lg:pt-2 pt-2">
+      <div className="flex flex-col lg:w-3/4 lg:mx-auto mx-4 mt-4 items-center lg:px-12 px-2 lg:pt-2 pt-2">
         {profile && (
           <div className="w-full">
             {' '}
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 pb-4">
+              <div className="w-full h-auto bg-surface pl-12 pt-4 pb-4">
+                <h2 className="text-onSurface lg:text-3xl text-xl font-bold">
+                  Experience
+                </h2>
+                {profile.experience.length > 0 ? (
+                  _.map(profile.experience, (experience, index) =>
+                    index + 1 === profile.experience.length ? (
+                      <ProfileExperience
+                        key={experience._id}
+                        experience={experience}
+                        hidden="true"
+                      />
+                    ) : (
+                      <ProfileExperience
+                        key={experience._id}
+                        experience={experience}
+                        hidden="false"
+                      />
+                    )
+                  )
+                ) : (
+                  <h4 className="pt-4 text-onSurface">
+                    No Experience Credentials
+                  </h4>
+                )}
+              </div>
+              <div className="w-full h-auto bg-surface pl-12 pt-4 pb-4">
+                <h2 className="text-onSurface lg:text-3xl text-xl font-bold">
+                  Education
+                </h2>
+                {profile.education.length > 0 ? (
+                  _.map(profile.education, (education, index) =>
+                    index + 1 === profile.education.length ? (
+                      <ProfileEducation
+                        key={education._id}
+                        education={education}
+                        hidden="true"
+                      />
+                    ) : (
+                      <ProfileEducation
+                        key={education._id}
+                        education={education}
+                        hidden="false"
+                      />
+                    )
+                  )
+                ) : (
+                  <h4 className="pt-4 text-onSurface">
+                    No Education Credentials
+                  </h4>
+                )}
+              </div>
+            </div>
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
         )}
       </div>
