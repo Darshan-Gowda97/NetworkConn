@@ -21,15 +21,18 @@ import AddExperience from '../profile-forms/AddExperience';
 import AddEducation from '../profile-forms/AddEducation';
 import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
+import Posts from '../posts/Posts';
 
 const NavData = {
   Developers: '/profiles',
+  Posts: '/posts',
   Register: '/register',
   Login: '/login',
 };
 
 const NavData1 = {
   Developers: '/profiles',
+  Posts: '/posts',
   Dashboard: '/dashboard',
   Logout: '/',
 };
@@ -118,6 +121,7 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
             component={AddExperience}
           />
           <PrivateRoute exact path="/add-education" component={AddEducation} />
+          <PrivateRoute exact path="/posts" component={Posts} />
         </Switch>
       </BrowserRouter>
     </>

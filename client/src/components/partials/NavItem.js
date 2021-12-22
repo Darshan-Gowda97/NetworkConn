@@ -24,7 +24,7 @@ const NavItem = (props) => {
       <NavLink
         exact
         activeClassName=" block text-primary text-lg hover:text-primary "
-        onClick={props.name === 'Developers' ? () => {} : props.onClick}
+        onClick={props.name === 'Logout' ? props.onClick : () => {}}
         className={
           'block flex justify-center items-center gap-1  hover:text-primary text-' +
           props.size

@@ -2,12 +2,14 @@ const CustomButton = (props) => {
   return (
     <button
       className={
-        'flex px-4  justify-center items-center rounded hover:opacity-75 gap-2  text-' +
+        'flex  justify-center items-center rounded hover:opacity-75 gap-2  text-' +
         props.color +
         ' bg-' +
         props.bgcolor +
         ' py-' +
-        props.padding
+        props.padding +
+        ' px-' +
+        props.paddingx
       }
       onClick={props.onClick}
       type={props.type}
