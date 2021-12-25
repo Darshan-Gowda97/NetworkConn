@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import _ from 'lodash';
 import PostItem from './PostItem';
+import ProfileForm from './ProfileForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -17,8 +18,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <ImSpinner9 size="40" className="text-primary animate-spin" />
     </div>
   ) : (
-    <div className="flex w-full h-auto min-h-screen bg-background">
-      <div className="flex flex-col lg:w-3/4 w-full bg-surface lg:mx-auto mx-4 my-4 lg:px-32 px-10 lg:pt-7 pt-5 items-center">
+    <div className="flex w-full min-h-screen bg-background">
+      <div className="flex flex-col lg:w-3/4 w-full h-full bg-surface lg:mx-auto mx-4 my-6 lg:px-32 px-10 lg:pt-7 pt-5 items-center">
         <h1 className="lg:text-5xl text-4xl font-semibold text-onSurface">
           Posts
         </h1>
@@ -30,7 +31,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
             Welcome to the Community
           </h1>
         </div>
-        {/* PostsForm */}
+        <ProfileForm />
         <div className="w-full my-2">
           {_.map(posts, (post) => (
             <PostItem key={post._id} post={post} />

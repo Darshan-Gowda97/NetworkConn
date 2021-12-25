@@ -2,7 +2,7 @@ const CustomButton = (props) => {
   return (
     <button
       className={
-        'flex  justify-center items-center rounded hover:opacity-75 gap-2  text-' +
+        'flex px-2 justify-center items-center rounded hover:opacity-75 gap-2  text-' +
         props.color +
         ' bg-' +
         props.bgcolor +

@@ -83,7 +83,7 @@ router.delete('/:id', auth, async (req, res) => {
     if (post.user.toString() !== req.user.id) {
       return res.status(401).send('User not authroised');
     }
-    await Post.remove();
+    await post.remove();
     res.json({ msg: 'post removed' });
   } catch (err) {
     console.error(err.message);
@@ -189,6 +189,7 @@ router.post(
 //@access  Private
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {
+    console.log(req.params.id, req.params.comment_id);
     const post = await Post.findById(req.params.id);
 
     //pull out comment
