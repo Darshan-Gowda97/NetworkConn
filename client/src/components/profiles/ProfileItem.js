@@ -18,9 +18,9 @@ const ProfileItem = ({
     history.push(`/profile/${id}`);
   };
   return (
-    <div className="w-full h-auto grid grid-cols-3 mt-5 py-4 border-2 border-onSurface rounded bg-surface">
+    <div className="w-full h-auto grid grid-cols-3 mt-4 py-4 border-2 border-onBackground rounded bg-surface">
       <div className="flex items-center justify-center px-4">
-        <div className="rounded-full lg:mt-4 h-20 w-20 lg:h-36 lg:w-36 bg-onSurface">
+        <div className="rounded-full lg:mt-2 h-20 w-20 lg:h-36 lg:w-36 bg-onSurface">
           <img
             src={avatar}
             alt="profile"
