@@ -47,7 +47,7 @@ export const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="fixed w-full h-full py-14 bg-background ">
+    <div className=" w-full h-full min-h-screen pt-32 py-14 bg-background ">
       <div className="flex h-auto flex-col lg:w-1/2 lg:mx-auto mx-8 my-4 bg-surface lg:px-10 px-6 lg:pt-7 pt-5">
         <h1 className=" lg:text-5xl text-4xl font-semibold text-onSurface">
           Sign In

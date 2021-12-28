@@ -13,14 +13,18 @@ import CommentItem from './CommentItem';
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     console.log(match.params.id);
-    getPost(match.params.id);
+    const id = match.params.id;
+    console.log(match.params.id, id);
+    getPost(id);
   }, [getPost]);
   return loading || post === null ? (
-    <div className="w-full h-full my-48 flex justify-center items-center">
-      <ImSpinner9 size="40" className="text-primary animate-spin" />
+    <div className="bg-background w-full flex h-full min-h-screen">
+      <div className="w-full h-full my-48 flex justify-center items-center bg-background">
+        <ImSpinner9 size="40" className="text-primary animate-spin" />
+      </div>
     </div>
   ) : (
-    <div className="flex flex-col w-full min-h-screen bg-background">
+    <div className="flex flex-col w-full min-h-screen lg:pt-16 pt-24 bg-background">
       <Link to="/posts" className="lg:pl-40 pl-4 mt-4">
         <CustomButton
           color="black"

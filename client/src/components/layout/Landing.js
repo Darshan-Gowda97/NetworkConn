@@ -23,6 +23,7 @@ import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
 import Posts from '../posts/Posts';
 import Post from '../post/Post';
+import NotFound from './NotFound';
 
 const NavData = {
   Developers: '/profiles',
@@ -60,44 +61,51 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
     <>
       <BrowserRouter>
         {SideNav ? (
-          <div class="h-full w-full flex grid lg:grid-cols-2 grid-cols-1 bg-onPrimary">
-            <div class="flex lg:flex-row flex-row lg:justify-start justify-center items-center lg:px-32 gap-1 lg:pt-0 pt-2 lg:border-b-2 border-primary text-onSurface lg:h-16">
-              <ul class="text-2xl font-semibold text-white">
-                {_.keys(NavData2).map((key) => (
-                  <NavItem key={key} name={key} to={NavData2[key]} size="2xl" />
-                ))}
-              </ul>
-            </div>
+          <div className="h-full w-full flex ">
+            <div className="flex w-full fixed grid lg:grid-cols-2 grid-cols-1 bg-onPrimary">
+              <div className="flex lg:flex-row flex-row lg:justify-start justify-center items-center lg:px-32 gap-1 lg:pt-0 pt-2 lg:border-b-2 border-primary text-onSurface lg:h-16">
+                <ul className="text-2xl font-semibold text-white">
+                  {_.keys(NavData2).map((key) => (
+                    <NavItem
+                      key={key}
+                      name={key}
+                      to={NavData2[key]}
+                      size="2xl"
+                    />
+                  ))}
+                </ul>
+              </div>
 
-            <div class="flex  lg:justify-end justify-center items-center  border-b-2 border-primary text-onSurface h-16">
-              {!loading &&
-                (isAuthenticated ? (
-                  <div className="flex justify-center items-center gap-1">
-                    <ul class="flex gap-5 lg:pr-12">
-                      {_.keys(NavData1).map((key) => (
+              <div className="flex  lg:justify-end justify-center items-center  border-b-2 border-primary text-onSurface h-16">
+                {!loading &&
+                  (isAuthenticated ? (
+                    <div className="flex justify-center items-center gap-1">
+                      <ul className="flex gap-5 lg:pr-12">
+                        {_.keys(NavData1).map((key) => (
+                          <NavItem
+                            key={key}
+                            name={key}
+                            to={NavData1[key]}
+                            onClick={logout}
+                            size="lg"
+                          />
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <ul className="flex gap-5 lg:pr-12">
+                      {_.keys(NavData).map((key) => (
                         <NavItem
                           key={key}
                           name={key}
-                          to={NavData1[key]}
-                          onClick={logout}
+                          to={NavData[key]}
+                          onClick={() => setShowMenu(!showMenu)}
                           size="lg"
                         />
                       ))}
                     </ul>
-                  </div>
-                ) : (
-                  <ul class="flex gap-5 lg:pr-12">
-                    {_.keys(NavData).map((key) => (
-                      <NavItem
-                        key={key}
-                        name={key}
-                        to={NavData[key]}
-                        onClick={() => setShowMenu(!showMenu)}
-                        size="lg"
-                      />
-                    ))}
-                  </ul>
-                ))}
+                  ))}
+              </div>
             </div>
           </div>
         ) : null}
@@ -121,9 +129,11 @@ const Landing = ({ loading, isAuthenticated, logout }) => {
             path="/add-experience"
             component={AddExperience}
           />
+
           <PrivateRoute exact path="/add-education" component={AddEducation} />
           <PrivateRoute exact path="/posts" component={Posts} />
-          <PrivateRoute exact path="/:id" component={Post} />
+          <PrivateRoute exact path="/post/:id" component={Post} />
+          <Route path="/" component={NotFound} />
         </Switch>
       </BrowserRouter>
     </>

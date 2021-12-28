@@ -33,7 +33,7 @@ const AddExperience = ({ addExperience, history }) => {
   };
 
   return (
-    <div className="flex w-full h-auto bg-background ">
+    <div className="flex w-full h-auto bg-background lg:pt-16 pt-28">
       <div className="flex  flex-col lg:w-3/4 lg:mx-auto mx-4 my-8 items-center bg-surface lg:px-32 px-10 lg:pt-7 pt-5">
         <h1 className=" lg:text-5xl text-4xl font-semibold text-onSurface">
           Add An Experience

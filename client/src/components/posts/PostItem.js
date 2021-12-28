@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import CustomButton from '../partials/CustomButton';
@@ -22,6 +22,10 @@ const PostItem = ({
   let icon3 = <VscError size={18} />;
   let placeholder = `comment ${comments.length}`;
   const [like, setLike] = useState(true);
+  const history = useHistory();
+  const toPost = (id) => {
+    history.push(`/post/${id}`);
+  };
   return (
     <div className="flex w-full h-auto my-2 mb-4 border border-onBackground">
       <div className="w-full h-auto grid grid-cols-4">
@@ -80,27 +84,28 @@ const PostItem = ({
                 icon={icon2}
                 onClick={() => removeLike(_id)}
               />
-              <Link to={`/${_id}`}>
-                {comments.length > 0 ? (
-                  <CustomButton
-                    color="black"
-                    name={placeholder}
-                    bgcolor="onSurface"
-                    padding="1"
-                    paddingx="3"
-                    type="button"
-                  />
-                ) : (
-                  <CustomButton
-                    color="black"
-                    name="comment"
-                    bgcolor="onSurface"
-                    padding="1"
-                    paddingx="3"
-                    type="button"
-                  />
-                )}
-              </Link>
+
+              {comments.length > 0 ? (
+                <CustomButton
+                  color="black"
+                  name={placeholder}
+                  bgcolor="onSurface"
+                  padding="1"
+                  paddingx="3"
+                  type="button"
+                  onClick={() => toPost(_id)}
+                />
+              ) : (
+                <CustomButton
+                  color="black"
+                  name="comment"
+                  bgcolor="onSurface"
+                  padding="1"
+                  paddingx="3"
+                  type="button"
+                  onClick={() => toPost(_id)}
+                />
+              )}
 
               {!auth.loading && user === auth.user._id && (
                 <CustomButton

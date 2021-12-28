@@ -13,11 +13,13 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     getProfiles();
   }, [getProfiles]);
   return loading ? (
-    <div className="w-full h-full my-48 flex justify-center items-center">
-      <ImSpinner9 size="40" className="text-primary animate-spin" />
+    <div className="bg-background w-full flex h-full min-h-screen">
+      <div className="w-full h-full mt-48 flex justify-center items-center bg-background">
+        <ImSpinner9 size="40" className="text-primary animate-spin" />
+      </div>
     </div>
   ) : (
-    <div className="flex w-full h-auto min-h-screen bg-background">
+    <div className="flex w-full h-auto min-h-screen bg-background lg:pt-16 pt-24">
       <div className="flex flex-col lg:w-3/4 w-full lg:px-32 px-10 pb-4 lg:pt-7 pt-5 bg-surface lg:mx-auto mx-4 my-8 items-center">
         <h1 className="lg:text-5xl text-4xl font-semibold text-onSurface">
           Developers

@@ -15,16 +15,16 @@ const Homepage = () => {
     });
   };
   return (
-    <div className="flex ">
-      <div className="fixed lg:w-auto lg:h-auto w-full h-full flex">
-        <img src={showcase} alt="Background" />
-      </div>
-      <div className="fixed flex w-full h-full bg-overlay justify-center items-center">
+    <div className="flex flex-col min-h-screen bg-background justify-center items-center lg:pt-32 pt-48">
+      {/* <div className=" w-full h-full min-h-screen">
+        <img className="h-full w-full" src={showcase} alt="Background" />
+      </div> */}
+      <div className="flex w-full h-full justify-center  items-center ">
         <div className="lg:flex hidden flex-col gap-4 justify-center items-center">
-          <h1 className=" lg:text-6xl text-4xl font-semibold text-white -mt-32 ">
+          <h1 className=" lg:text-6xl text-4xl font-semibold text-onBackground -mt-32 ">
             Developer Connector
           </h1>
-          <h1 className="pt-2 lg:text-2xl text-xl text-white ">
+          <h1 className="pt-2 lg:text-2xl text-xl text-onBackground ">
             Create a developer profile/portfolio, share posts and get help from
             other developers
           </h1>
@@ -50,16 +50,16 @@ const Homepage = () => {
           </div>
         </div>
         <div className="flex lg:hidden flex-col lg:gap-4 gap-1 justify-center items-center">
-          <h1 className=" lg:text-6xl text-5xl font-semibold text-white lg:-mt-32 -mt-48 ">
+          <h1 className=" lg:text-6xl text-5xl font-semibold text-onBackground lg:-mt-32 -mt-48 ">
             Developer
           </h1>
-          <h1 className=" lg:text-6xl text-5xl font-semibold text-white lg:-mt-32 ">
+          <h1 className=" lg:text-6xl text-5xl font-semibold text-onBackground lg:-mt-32 ">
             Connector
           </h1>
-          <h1 className="pt-2 lg:text-2xl text-xl text-white ">
+          <h1 className="pt-2 lg:text-2xl text-xl text-onBackground ">
             Create a developer profile/portfolio, share posts and
           </h1>
-          <h1 className="lg:pt-2 lg:text-2xl text-xl text-white ">
+          <h1 className="lg:pt-2 lg:text-2xl text-xl text-onBackground ">
             get help from other developers
           </h1>
 

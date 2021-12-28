@@ -20,11 +20,13 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
   }, [match.params.id]);
 
   return loading || profile === null ? (
-    <div className="w-full h-full my-48 flex justify-center items-center">
-      <ImSpinner9 size="40" className="text-primary animate-spin" />
+    <div className="bg-background w-full flex h-full min-h-screen">
+      <div className="w-full h-full my-48 flex justify-center items-center bg-background">
+        <ImSpinner9 size="40" className="text-primary animate-spin" />
+      </div>
     </div>
   ) : (
-    <div className="w-full h-auto bg-background">
+    <div className="w-full h-auto bg-background lg:pt-16 pt-28">
       <div className="flex gap-4 pt-4 lg:pl-52 pl-8">
         <Link to="/profiles">
           <CustomButton

@@ -6,7 +6,7 @@ const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map((alert) => (
-    <div className="w-full bg-background pt-2 flex justify-center items-center">
+    <div className="w-full bg-background flex justify-center items-center lg:pt-16 pt-36">
       <div
         key={alert.id}
         className={

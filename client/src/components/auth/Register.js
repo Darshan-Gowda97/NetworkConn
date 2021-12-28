@@ -64,7 +64,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <div className="flex w-full h-auto  bg-background ">
+    <div className="flex w-full h-auto min-h-screen lg:pt-16 pt-24 bg-background ">
       <div className="flex  flex-col lg:w-1/2 lg:mx-auto mx-4 my-8 bg-surface lg:px-12 px-10 lg:pt-7 pt-5">
         <h1 className=" lg:text-5xl text-4xl font-semibold text-onSurface">
           Sign Up
