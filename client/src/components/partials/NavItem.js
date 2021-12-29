@@ -31,7 +31,7 @@ const NavItem = (props) => {
         }
         to={props.to}
       >
-        <div class="pt-1">{icon}</div>
+        <div className="pt-1">{icon}</div>
         {props.name}
       </NavLink>
     </li>

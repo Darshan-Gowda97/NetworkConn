@@ -6,11 +6,12 @@ import CustomInput from '../partials/CustomInput';
 import { useHistory, Redirect } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 //Redux
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { login } from '../../actions/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import allActions from '../../actions';
 
-export const Login = ({ login, isAuthenticated }) => {
+export const Login = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +33,8 @@ export const Login = ({ login, isAuthenticated }) => {
 
   const submitClicked = async (e) => {
     e.preventDefault();
-    login({ email, password });
+
+    dispatch(allActions.auth.login({ email, password }));
   };
 
   const toSignup = () => {
@@ -90,7 +92,7 @@ export const Login = ({ login, isAuthenticated }) => {
                 onChange={(e) => onPasswordChange(e.target.value)}
               ></CustomInput>
             </div>
-            {console.log(isAuthenticated)}
+
             <div className="pt-5">
               <CustomButton
                 color="white"
@@ -117,13 +119,9 @@ export const Login = ({ login, isAuthenticated }) => {
   );
 };
 
-Login.propTypes = {
-  login: propTypes.func.isRequired,
-  isAuthenticated: propTypes.bool,
-};
+// Login.propTypes = {
+//   login: propTypes.func.isRequired,
+//   isAuthenticated: propTypes.bool,
+// };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;

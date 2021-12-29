@@ -165,3 +165,14 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
     });
   }
 };
+
+export default {
+  getPosts,
+  getPost,
+  addPost,
+  deletePost,
+  addLike,
+  removeLike,
+  addComment,
+  deleteComment,
+};

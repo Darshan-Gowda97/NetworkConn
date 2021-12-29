@@ -6,12 +6,13 @@ import CustomInput from '../partials/CustomInput';
 import { useHistory, Redirect } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 //Redux
-import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alerts';
+import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../../actions/auth';
-import propTypes from 'prop-types';
+import allActions from '../../actions';
 
-export const Register = ({ setAlert, register, isAuthenticated }) => {
+export const Register = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
   const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -45,10 +46,13 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const submitClicked = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
-      setAlert('Passwords are not matching', 'danger');
+      dispatch(
+        allActions.alerts.setAlert('Passwords are not matching', 'danger')
+      );
     } else {
-      register({ name, email, password });
+      dispatch(allActions.auth.register({ name, email, password }));
     }
   };
 
@@ -155,14 +159,4 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
   );
 };
 
-Register.propTypes = {
-  setAlert: propTypes.func.isRequired,
-  register: propTypes.func.isRequired,
-  isAuthenticated: propTypes.bool,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default Register;

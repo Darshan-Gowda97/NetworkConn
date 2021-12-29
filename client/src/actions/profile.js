@@ -199,3 +199,16 @@ export const deleteAccount = () => async (dispatch) => {
     }
   }
 };
+
+export default {
+  getCurrentProfile,
+  getProfiles,
+  getProfileById,
+  getGithubRepos,
+  createProfile,
+  addEducation,
+  addExperience,
+  deleteEducation,
+  deleteExperience,
+  deleteAccount,
+};

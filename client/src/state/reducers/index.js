@@ -4,4 +4,6 @@ import auth from './auth';
 import profile from './profile';
 import post from './post';
 
-export default combineReducers({ alert, auth, profile, post });
+const rootReducer = combineReducers({ alert, auth, profile, post });
+
+export default rootReducer;

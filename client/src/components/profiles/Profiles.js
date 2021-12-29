@@ -12,7 +12,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
-  return loading ? (
+  return loading || profiles.length === 0 ? (
     <div className="bg-background w-full flex h-full min-h-screen">
       <div className="w-full h-full mt-48 flex justify-center items-center bg-background">
         <ImSpinner9 size="40" className="text-primary animate-spin" />

@@ -9,8 +9,8 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
 } from './types';
-import { setAlert } from './alerts';
 import setAuthToken from '../utils/setAuthToken';
+import { setAlert } from './alerts';
 
 //Load User
 export const loadUser = () => async (dispatch) => {
@@ -84,3 +84,5 @@ export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
+
+export default { loadUser, register, login, logout };
